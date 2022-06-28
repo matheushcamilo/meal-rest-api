@@ -23,4 +23,4 @@ class Week(Base):
     start_date = Column(String, nullable=False)
     end_date = Column(String, nullable=False)    
 
-    meals = relationship("Meal", secondary="meal_week", back_populates="weeks")
+    meals = relationship("Meal", secondary="meal_week", back_populates="weeks", lazy="joined")
