@@ -19,3 +19,10 @@ def get_meals_by_date_and_type(date: str, meal_type: str, db: Session = Depends(
     if not meals:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail='No meals were found')
     return meals
+
+@router.get("/{date}")
+def get_meals_by_date(date: str, db: Session = Depends(get_db)):
+    week = db.query(models.Week).filter(models.Week.start_date<=date,models.Week.end_date>=date).first()
+    if not week:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail='Invalid date provided')
+    return week.meals    
