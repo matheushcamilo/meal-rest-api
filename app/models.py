@@ -3,9 +3,10 @@ from sqlalchemy import Column, String, Integer, Table, ForeignKey
 from sqlalchemy.orm import relationship
 
 meal_week = Table('meal_week', Base.metadata,
-    Column('meal_id', ForeignKey('meal.id'), primary_key=True),
-    Column('week_id', ForeignKey('week.id'), primary_key=True)
-)
+                  Column('meal_id', ForeignKey('meal.id'), primary_key=True),
+                  Column('week_id', ForeignKey('week.id'), primary_key=True)
+                  )
+
 
 class Meal(Base):
     __tablename__ = 'meal'
@@ -16,11 +17,13 @@ class Meal(Base):
 
     weeks = relationship("Week", secondary="meal_week", back_populates="meals")
 
+
 class Week(Base):
     __tablename__ = 'week'
 
     id = Column(Integer, primary_key=True, index=True)
     start_date = Column(String, nullable=False)
-    end_date = Column(String, nullable=False)    
+    end_date = Column(String, nullable=False)
 
-    meals = relationship("Meal", secondary="meal_week", back_populates="weeks", lazy="joined")
+    meals = relationship("Meal", secondary="meal_week",
+                         back_populates="weeks", lazy="joined")
