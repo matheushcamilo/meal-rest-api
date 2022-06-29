@@ -1,8 +1,9 @@
 # meal-rest-api
 Rest API to fetch data from database and display all available meals for a specific day and meal type
 
-**Note: you will need to run pip install -r requirements.txt on the root of this project to install all dependencies**
+**Note: you will need to run "pip install -r requirements.txt" on the root of this project to install all dependencies**
 
+**Run "uvicorn app.main:app" in this project's root folder to run the API**
 
 # **Features**
 #### **Accessing the Rest API**
